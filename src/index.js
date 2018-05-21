@@ -1,19 +1,12 @@
-import nexusdk from 'nexusdk';
+import { wrapHook } from 'nexusdk';
 import Hook from './Hook';
 
 const hook = new Hook();
 
-nexusdk.on('start', ({ port }) => {
-  hook.setProperties({ port }, nexusdk.sendMessage);
+export default wrapHook((properties, messages) => {
+  const { trigger } = messages;
+  const { port } = properties;
+
+  hook.setProperties({ port }, trigger);
   hook.start();
 });
-
-nexusdk.on('stop', () => {
-  hook.stop();
-});
-
-nexusdk.on('exit', () => {
-  hook.stop();
-  process.exit(1);
-});
-

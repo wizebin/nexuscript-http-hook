@@ -1,7 +1,7 @@
 {
-  "name": "nexuscript-file-hook",
+  "name": "nexuscript-http-hook",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create a local server and notify Nexuscript of incoming http data",
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack --mode development",
@@ -16,5 +16,17 @@
   "dependencies": {
     "express": "^4.16.3",
     "nexusdk": "github:wizebin/nexusdk"
+  },
+  "nexuscript": {
+    "type": "hook",
+    "author": "nexuscript",
+    "price": "free",
+    "configuration": {
+      "port": "string"
+    },
+    "category": "web",
+    "build_command": "npm run build",
+    "dist_folder": "dist",
+    "dist_file": "dist/main.js"
   }
 }
